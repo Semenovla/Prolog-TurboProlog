@@ -1,0 +1,40 @@
+1) during the laboratory work, methods of working with dynamic databases in the Visual Prolog
+environment were studied. The task of describing family relationships using a dynamic database is implemented, 
+functions for adding, changing and deleting data, as well as saving changes are provided. The acquired skills
+can be applied to work with other types of dynamic data and extend the functionality of programs in the Visual 
+Prolog language.
+
+2) during the laboratory work, methods of working with dynamic databases in the Visual Prolog environment w
+ere studied. The task of describing family relationships using a dynamic database is implemented, functions 
+for adding, changing and deleting data, as well as saving changes are provided. The acquired skills can be 
+applied to work with other types of dynamic data and extend the functionality of programs in the 
+Visual Prolog language.
+
+3) The main purpose of the program is to help the user find the cause of the car breakdown. To do this, the program 
+asks the user a number of questions about possible problems, and then makes a recommendation based on these answers.
+The program consists of two main parts: a database containing information and logic that processes the user's
+questions and issues an appropriate recommendation and conclusion.
+
+4) Implement the tasks of searching for perfect numbers, generating permutations and combinations, 
+naive and binary sorting in prolog.
+
+5) In this laboratory work, skills in the Prolog programming language were mastered and applied in practice. 
+The tasks of establishing a correspondence, the method of generating a hypothesis, the task of searching in 
+the state space and visualization were considered. The subject area is a map of cities:
+1 task: 
+Condition: Three friends took the first, second and third places in the Universiade competitions. Friends are of different nationalities, they have different names and they love different sports.
+Ivan prefers basketball and plays better than the American. Argentine Messi plays better than a tennis player. The football player took the first place.
+Who is Russian? What kind of sport does Richard play?
+Task 2: 
+Condition:
+1. If A is guilty and B is innocent, then C is guilty;
+2. C never acts alone;
+3. A never "goes to work" with C;
+4. No one except A, B and C is involved in the crime, and at least one of these three is guilty.
+The sergeant scratched his head and said, "I'm afraid I can't get too much out of these facts, sir. And can you, based on them, prove which of the three suspects is guilty and who is not guilty?"
+"I can't," admitted Craig, "but there is quite enough material to bring an irrefutable accusation against one of them." Whose guilt is beyond doubt?
+Task 3: 
+Condition: The maze is a system of rooms connected by passages. The maze has an entrance and exit, as well as a room with a gold treasure. In addition, there are rooms that are forbidden to visit: the room of monsters and the room of robbers.
+1. Find the way in the maze from the entrance to the exit without visiting the same room twice;
+2. Find a way with a visit to the golden room;
+3. Find a way to avoid forbidden rooms.
