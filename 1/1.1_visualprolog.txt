@@ -1,0 +1,103 @@
+DOMAINS
+n = symbol
+
+PREDICATES
+nondeterm parent(n, n) %???????? (???????? ?? ????? n ???????? ??????? n)
+nondeterm pol(n, n) %??? ????????
+nondeterm man(n) %???????
+nondeterm woman(n) %???????
+nondeterm father(n) %????
+nondeterm mother(n) %????
+nondeterm son(n) %???
+nondeterm daughter(n) %????
+nondeterm brother1(n) %????
+nondeterm sister1(n) %??????
+nondeterm brother(n, n) %????
+nondeterm sister(n, n) %??????
+nondeterm grandfather(n, n) %???????
+nondeterm grandmother(n, n) %???????
+nondeterm uncle(n, n) %????
+nondeterm aunt(n, n) %????
+nondeterm nephew(n, n) %??????????
+nondeterm niece(n, n) %??????????
+nondeterm offspring(n, n) %?????????
+nondeterm ancestor(n, n) %??????
+nondeterm generation(n, n)
+nondeterm child(n)
+nondeterm adult(n)
+nondeterm grand(n, n).
+nondeterm extreme(n, n).
+nondeterm extreme_(n, n).
+
+CLAUSES
+parent(son, mother).
+parent(son, father).
+parent(sister, mother).
+parent(sister, father).
+parent(name4, aunt).
+parent(aunt, grandfather).
+parent(father, name1).
+parent(mother, grandfather).
+parent(name1, name2).
+parent(name5, name4).
+parent(name3, aunt).
+parent(gratdfather, name6).
+
+pol(son, m).
+pol(sister, f).
+pol(mother, f).
+pol(father, m).
+pol(grandfather, m).
+pol(grandmother, f).
+pol(aunt, f).
+pol(name1, m).
+pol(name5, f).
+pol(name2, m).
+pol(name5, m).
+pol(name3, m).
+pol(name4, f).
+pol(name6, f).
+
+man(X) :- pol(X, m).
+woman(X) :- pol(X, f).
+
+father(X) :- parent(_, X), pol(X, m).
+mother(X) :- parent(_, X), pol(X, f).
+
+son(X) :- parent(X, _), pol(X, m).
+daughter(X) :- parent(X, _), pol(X, f).
+
+brother1(X) :- man(X), parent(X, Z), parent(Y, Z), X<>Y.
+sister1(X) :- woman(X), parent(X, Z), parent(Y, Z), X<>Y.
+brother(X, Y) :- parent(X, Z), parent(Y, Z), man(X), X<>Y.
+sister(X, Y) :- parent(X, Z), parent(Y, Z), woman(X), X<>Y.
+
+grandfather(X, Y) :- man(X), parent(Y, Z), parent(Z, X), X<>Y.
+grandmother(X, Y) :- woman(X), parent(Y, Z), parent(Z, X), X<>Y.
+
+grand(X, Y) :- parent(Y, Z), parent(Z, X), X<>Y.
+
+uncle(X, Y) :- parent(Y, Z), brother(X, Z).
+aunt(X, Y) :- parent(Y, Z), sister(X, Z).
+
+nephew(X, Y) :- man(X), parent(X, Z), parent(Z, W), parent(Y, W), Z<>Y.
+niece(X, Y) :- woman(X), parent(X, Z), parent(Z, W), parent(Y, W), Z<>Y.
+
+offspring(Y, X) :- parent(Y, X).
+
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), parent(Z, Y).
+
+generation(X, Y) :- extreme(X, Y), X<>Y .						%????? ?? ????? ???????
+generation(X, Y) :- extreme_(X, Y), X<>Y.
+
+extreme(X, Y) :- parent(X, Z), parent(Y, Z); parent(X, W), parent(Y, A), extreme(W, A).  %???? ?? ? X ? Y ????? ??????
+
+extreme_(X, Y) :- parent(Z, X), parent(Z, Y).						 %???? ?? ????? ????????
+extreme_(X, Y) :- parent(W, X), parent(A, Y), extreme_(W, A).
+
+
+child(X) :- parent(X, _), not(parent(_, X)).
+adult(X) :- parent(_, X).
+GOAL
+daughter(X).

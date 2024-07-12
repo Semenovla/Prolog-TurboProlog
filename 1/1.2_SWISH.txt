@@ -1,0 +1,37 @@
+% Предикат для вычисления суммы элементов списка
+my_sum_list([], 0).
+my_sum_list([X|Xs], Sum) :-
+    my_sum_list(Xs, Sum1),
+    Sum is Sum1 + X.
+
+% Предикат для вычисления длины списка
+list_length([], 0).
+list_length([_|T], Length) :-
+    list_length(T, Length1),
+    Length is Length1 + 1.
+
+% Предикат для вычисления среднего арифметического списка
+average_list(L, Average) :-
+    my_sum_list(L, Sum),
+    list_length(L, Length),
+    Length > 0,
+    Average is Sum / Length.
+
+% Инициализация списка
+my_numbers([1, 2, 3, 4, 5,6,7,8,9,10,11,12]).
+
+% Предикат для тестирования вычисления среднего
+test_average :-
+    my_numbers(L),
+    average_list(L, Avg),
+    write('Average: '), write(Avg).  
+
+% Вызов предиката для тестирования вычисления среднего
+:- test_average.
+
+
+
+
+
+
+https://www.onlinegdb.com/

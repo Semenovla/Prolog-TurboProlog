@@ -1,0 +1,110 @@
+database
+xpositive(symbol, symbol)
+xnegative(symbol, symbol)
+predicates
+run
+it_is(symbol)
+car_is(symbol)
+ask(symbol, symbol)
+positive(symbol, symbol)
+negative(symbol, symbol)
+remember(symbol, symbol, symbol)
+clear_facts
+goal
+run.
+clauses
+run :-write("Отвечать д/н\n"), car_is(X), !,
+write("\n Вам более всего подходит ", X), nl, clear_facts.
+run :-write("\n Ну-у-у!У Вас слишком высокие требования"), clear_facts.
+positive(X, Y) :- xpositive(X, Y), !.
+positive(X, Y) :- not(negative(X, Y)), !, ask(X,Y).
+negative(X, Y) :- xnegative(X, Y), !.
+ask(X, Y) :-
+write("Машина должна ", X, " ", Y, "?\n"),
+readln(Reply),
+remember(X, Y, Reply).
+remember(X, Y, "д") :- asserta(xpositive(X, Y)).
+remember(X, Y, "н") :- asserta(xnegative(X, Y)), fail.
+clear_facts :- retract(xpositive(_, _)), fail.
+clear_facts :- retract(xnegative(_, _)), fail.
+clear_facts :- write("\n press enter"), readchar(_).
+it_is("легковая"):-
+positive("иметь", "несущий кузов"),
+positive("иметь", "массу<3.5т").
+it_is("грузовая"):-
+not(positive("иметь", "массу<3.5т")),
+positive("быть предназначена", "для перевозки грузов"),
+positive("иметь длину", "более 3м.").
+it_is("новая модель"):-positive("быть выпущена", "после 1985г.").
+it_is("старая модель"):-not(positive("быть выпущена", "после 1985г.")).
+it_is("средних размеров"):-
+positive("вмещать", "до 4 пассажиров"),
+positive("иметь длину", "не больше 3м.").
+it_is("маленьких размеров"):-
+positive("вмещать", "до 3 пассажиров"),
+positive("иметь длину", "до 3м.").
+it_is("больших размеров"):-
+positive("вмещать", "до 8 пассажиров"),
+positive("иметь длину", "более 3м.").
+it_is("городская и сельская"):-
+positive("иметь", "сильный мотор"),
+positive("иметь", "высокий кузов"),
+positive("иметь", "среднюю скорость").
+it_is("городская"):-
+positive("иметь", "быстрый разгон"),
+positive("имеет", "небольшие колеса"),
+positive("иметь", "обтекаемый кузов").
+it_is("сельская"):-
+positive("иметь", "4 ведущих колеса"),
+positive("иметь", "мощный мотор"),
+positive("иметь", "хорошую проходимость").
+it_is("отечественная"):-positive("быть выпущена", "в России").
+it_is("зарубежная"):- positive("быть выпущена", "за границей").
+car_is("ВАЗ-2109"):-
+it_is("легковая"),
+it_is("новая модель"),
+it_is("средних размеров"),
+it_is("отечественная"),
+it_is("городская"),
+positive("быть модной", "среди молодежи"),
+positive("иметь", "пять дверей"),
+positive("иметь", "5-ступенчатую К.П."),
+positive("иметь", "большую цену"),
+positive("иметь", "большую скорость"),!.
+car_is("ВАЗ-2108"):-
+it_is("легковая"),
+it_is("новая модель"),
+it_is("средних размеров"),
+it_is("отечественная"),
+it_is("городская"),
+positive("быть модной", "среди молодежи"),
+positive("иметь", "три двери"),
+positive("иметь", "5-ступенчатую К.П."),
+positive("иметь", "большую скорость"),
+positive("иметь", "большую цену"),!.
+car_is("Москвич"):-
+it_is("легковая"),
+it_is("старая модель"),
+it_is("средних размеров"),
+it_is("отечественная"),
+positive("cтоить", "не очень дорого"),
+it_is("городская и сельская"),!.
+car_is("ВАЗ-1111"):-
+it_is("легковая"),
+it_is("новая модель"),
+it_is("маленьких размеров"),
+it_is("отечественная"),
+it_is("городская"),
+positive("стоить", "совсем дешево"),!.
+car_is("КАМАЗ"):-
+it_is("грузовая"),
+it_is("старая модель"),
+it_is("отечественная"),
+it_is("сельская"),!.
+car_is("МЕРСЕДЕС-БЕНЦ"):-
+it_is("легковая"),
+it_is("новая модель"),
+it_is("зарубежная"),
+it_is("городская"),
+positive("иметь", "бортовой компьютер"),
+positive("стоить", "очень дорого"),!.
